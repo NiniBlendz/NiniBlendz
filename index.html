@@ -125,6 +125,29 @@ function bookAppointment() {
 
     window.location.href = "sms:6474823363?body=" + message;
 }
+</script><script>
+function bookAppointment() {
+    var barber = document.getElementById("barber").value;
+    var date = document.getElementById("date").value;
+    var time = document.getElementById("time").value;
+    var phone = document.getElementById("customerPhone").value;
+
+    if (!date || !time || !phone) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    var message = "New Appointment Request:\n" +
+                  "Barber: " + barber + "\n" +
+                  "Date: " + date + "\n" +
+                  "Time: " + time + "\n" +
+                  "Customer Phone: " + phone;
+
+    var encodedMessage = encodeURIComponent(message);
+
+    // This format works better on iPhone
+    window.location.href = "sms:+16474823363&body=" + encodedMessage;
+}
 </script>
 
 </body>
