@@ -25,46 +25,24 @@ h1 {
     letter-spacing: 2px;
 }
 
-.tagline {
-    font-size: 1.2em;
-    margin-top: 10px;
-    color: #bbb;
-}
-
 .section {
     padding: 50px 20px;
 }
 
-.services {
-    background-color: #1a1a1a;
-}
-
 .card {
     background: #222;
-    padding: 20px;
+    padding: 25px;
     margin: 20px auto;
     max-width: 400px;
     border-radius: 10px;
 }
 
-.price {
-    font-size: 1.5em;
-    color: #00ff99;
-    margin-top: 10px;
-}
-
-.barbers {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.barber-card {
-    background: #222;
-    margin: 15px;
-    padding: 20px;
-    border-radius: 10px;
-    width: 200px;
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
 }
 
 button {
@@ -74,7 +52,6 @@ button {
     font-size: 1em;
     border-radius: 30px;
     cursor: pointer;
-    margin-top: 20px;
 }
 
 button:hover {
@@ -87,11 +64,6 @@ footer {
     font-size: 0.9em;
     color: #777;
 }
-
-a {
-    color: white;
-    text-decoration: none;
-}
 </style>
 </head>
 
@@ -99,43 +71,61 @@ a {
 
 <header>
     <h1>NINI BLENDZ</h1>
-    <div class="tagline">Modern Cuts. Clean Blends. Vaughan</div>
-    <a href="tel:6474823363">
-        <button>Book Now</button>
-    </a>
+    <p>Modern Cuts • Vaughan</p>
 </header>
 
-<section class="section services">
-    <h2>Services</h2>
+<section class="section">
+    <h2>Book Appointment</h2>
+
     <div class="card">
-        <h3>Men's Haircut</h3>
-        <div class="price">$15</div>
-    </div>
-</section>
 
-<section class="section">
-    <h2>Meet The Barbers</h2>
-    <div class="barbers">
-        <div class="barber-card">
-            <h3>Armand</h3>
-            <p>Precision fades & modern styles</p>
-        </div>
-        <div class="barber-card">
-            <h3>Nihal</h3>
-            <p>Clean blends & sharp lineups</p>
-        </div>
-    </div>
-</section>
+        <label>Select Barber</label><br>
+        <select id="barber">
+            <option>Armand</option>
+            <option>Nihal</option>
+        </select><br>
 
-<section class="section">
-    <h2>Location</h2>
-    <p>Vaughan, Ontario</p>
-    <p>Call: <a href="tel:6474823363">647-482-3363</a></p>
+        <label>Select Date</label><br>
+        <input type="date" id="date"><br>
+
+        <label>Select Time</label><br>
+        <input type="time" id="time"><br>
+
+        <label>Your Phone Number</label><br>
+        <input type="text" id="customerPhone" placeholder="Enter your phone number"><br>
+
+        <button onclick="bookAppointment()">Book Now</button>
+
+    </div>
 </section>
 
 <footer>
-    © 2026 Nini Blendz | Modern Barber Shop in Vaughan
+    Men’s Haircut - $15 <br>
+    Vaughan, Ontario <br>
+    © 2026 Nini Blendz
 </footer>
+
+<script>
+function bookAppointment() {
+    var barber = document.getElementById("barber").value;
+    var date = document.getElementById("date").value;
+    var time = document.getElementById("time").value;
+    var phone = document.getElementById("customerPhone").value;
+
+    if (!date || !time || !phone) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    var message = "New Appointment Request:%0A" +
+                  "Barber: " + barber + "%0A" +
+                  "Date: " + date + "%0A" +
+                  "Time: " + time + "%0A" +
+                  "Customer Phone: " + phone;
+
+    window.location.href = "sms:6474823363?body=" + message;
+}
+</script>
 
 </body>
 </html>
